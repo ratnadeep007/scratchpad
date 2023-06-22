@@ -37,7 +37,7 @@ export default function Details(props: PageProps<Props>) {
       </Head>
       <div class="container h-screen mx-auto max-w-screen-md">
         <div class="flex flex-col h-full items-center justify-start">
-          <div class="block max-w-sm p-6 bg-white rounded-lg hover:bg-gray-100">
+          <div class="block w-full p-6 bg-white rounded-lg hover:bg-gray-100">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
               {props.data.note.title}
             </h5>
