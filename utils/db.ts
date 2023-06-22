@@ -1,6 +1,9 @@
-import { connect } from "https://deno.land/x/redis@v0.30.0/mod.ts";
+import { load } from "$std/dotenv/mod.ts";
+import { Redis } from "https://deno.land/x/upstash_redis/mod.ts";
 
-export const redisClient = await connect({
-  hostname: Deno.env.get("REDIS_URL") ?? "127.0.0.1",
-  port: 6379,
+const env = await load();
+
+export const redisClient = new Redis({
+  url: env["UPSTASH_REDIS_URL"],
+  token: env["UPSTASH_REDIS_TOKEN"],
 });
