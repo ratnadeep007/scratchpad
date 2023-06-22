@@ -2,6 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { getNote } from "./api/notes.ts";
 import { Note } from "../models/note.ts";
+import { CSS, render } from "https://deno.land/x/gfm/mod.ts";
 
 type Props = {
   note: Note;
@@ -17,11 +18,22 @@ export const handler: Handlers<Props> = {
   },
 };
 
+const markdown_body = `.markdown-body a {
+  color: blue !important;
+  text-decoration: underline !important;
+}`;
+
 export default function Details(props: PageProps<Props>) {
   return (
     <>
       <Head>
         <title>ScratchPad</title>
+        <style>
+          {CSS}
+        </style>
+        <style>
+          {markdown_body}
+        </style>
       </Head>
       <div class="container h-screen mx-auto max-w-screen-md">
         <div class="flex flex-col h-full items-center justify-start">
@@ -34,8 +46,15 @@ export default function Details(props: PageProps<Props>) {
             </div>
             {props.data.note.type != "video"
               ? (
-                <div class="text-base text-gray-900 capitalize line-clmap-3 w-[300px] md:w-[300px]">
-                  {props.data.note.message}
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: render(props.data.note.message),
+                  }}
+                  data-color-mode="light"
+                  data-light-theme="light"
+                  data-dark-theme="dark"
+                  class="markdown-body"
+                >
                 </div>
               )
               : (
