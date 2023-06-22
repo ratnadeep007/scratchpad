@@ -81,7 +81,7 @@ export default function Add() {
           >
             <option selected>Choose type</option>
             <option value="note">Note</option>
-            <option value="Video">Video</option>
+            <option value="video">Video</option>
           </select>
         </div>
         <button
