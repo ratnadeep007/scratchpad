@@ -1,7 +1,7 @@
 {
   "lock": false,
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts",
+    "start": "deno run --reload -A --watch=static/,routes/ dev.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "imports": {
@@ -14,7 +14,7 @@
     "twind": "https://esm.sh/twind@0.16.19",
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.190.0/",
-    "redis": "https://deno.land/x/redis/mod.ts"
+    "upstash_redis": "https://deno.land/x/upstash_redis@v1.21.0/mod.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
