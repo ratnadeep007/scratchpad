@@ -27,9 +27,13 @@ export default function Home(props: PageProps<Props>) {
       </Head>
       <div class="container p-4 h-screen mx-auto max-w-screen-md">
         <div class="flex flex-col h-full items-center justify-center">
-          <ul class="list-disc w-full flex flex-col h-full items-start justify-start gap-3">
-            {props.data.allNotes.map((el) => <OverviewCard note={el} />)}
-          </ul>
+          {props.data.allNotes.length > 0
+            ? (
+              <ul class="list-disc w-full flex flex-col h-full items-start justify-start gap-3">
+                {props.data.allNotes.map((el) => <OverviewCard note={el} />)}
+              </ul>
+            )
+            : null}
         </div>
       </div>
     </>

@@ -2,6 +2,6 @@ export type Note = {
   message: string;
   date: string;
   title: string;
-  id: number;
+  id: string;
   type: string;
 };

@@ -16,9 +16,9 @@ export const handler: Handlers = {
       message: form.get("message")?.toString(),
       title: form.get("title")?.toString(),
       date: new Date().toISOString(),
-      id: (count + 1).toString(),
+      id: crypto.randomUUID(),
+      type: form.get("type")?.toString(),
     } as unknown as Note;
-    console.log(data);
     await addNote(data);
 
     const headers = new Headers();
@@ -74,7 +74,11 @@ export default function Add() {
           >
             Type
           </label>
-          <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+          <select
+            name="type"
+            id="type"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
             <option selected>Choose type</option>
             <option value="note">Note</option>
             <option value="Video">Video</option>

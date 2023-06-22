@@ -9,7 +9,7 @@ type Props = {
 
 export const handler: Handlers<Props> = {
   async GET(_req, ctx) {
-    const note = await getNote(parseInt(ctx.params.id));
+    const note = await getNote(ctx.params.id);
 
     return ctx.render({
       note: note,

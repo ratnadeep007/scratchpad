@@ -1,5 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { Note } from "../../models/note.ts";
+import { redisClient } from "../../utils/db.ts";
 
 const body = [
   {
@@ -35,14 +36,33 @@ export const handler: Handlers = {
 };
 
 export async function getAllNotes() {
-  return body;
+  const allKeys: string[] = (await redisClient.sendCommand("KEYS", "notes-*"))
+    .value();
+  if (!allKeys.length) {
+    return [];
+  }
+  const allNotes = [];
+  const notes = (await redisClient.sendCommand("MGET", ...allKeys))
+    .value();
+  for (const note of notes) {
+    allNotes.push(JSON.parse(note));
+  }
+  return allNotes;
 }
 
-export async function getNote(id: number) {
-  return body[id - 1];
+export async function getNote(id: string) {
+  const note = (await redisClient.sendCommand(
+    "GET",
+    `notes-${id}`,
+  )).value();
+  return JSON.parse(note);
 }
 
 export async function addNote(note: Note) {
-  body.push(note);
-  return body;
+  await redisClient.sendCommand(
+    "SET",
+    `notes-${note.id}`,
+    JSON.stringify(note),
+  );
+  return note;
 }
