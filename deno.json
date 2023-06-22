@@ -15,7 +15,7 @@
     "twind/": "https://esm.sh/twind@0.16.19/",
     "$std/": "https://deno.land/std@0.190.0/",
     "upstash_redis": "https://deno.land/x/upstash_redis@v1.21.0/mod.ts",
-    "markdown": "https://deno.land/x/gfm/mod.ts"
+    "markdown": "https://deno.land/x/gfm@0.2.3/mod.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

@@ -2,7 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { getNote } from "./api/notes.ts";
 import { Note } from "../models/note.ts";
-import { CSS, render } from "https://deno.land/x/gfm/mod.ts";
+import { CSS, render } from "markdown";
 
 type Props = {
   note: Note;
