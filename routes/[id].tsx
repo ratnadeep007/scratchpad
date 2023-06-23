@@ -71,7 +71,7 @@ export default function Details(props: PageProps<Props>) {
                 </a>
               )}
             <div class="text-xs text-gray-600 italic mt-2">
-              {new Date(props.data.note.date).toLocaleString()}
+              {new Date(props.data.note.date).toDateString()}
             </div>
             {/* <a href="/">&larr;</a> */}
           </div>

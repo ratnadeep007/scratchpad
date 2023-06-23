@@ -23,7 +23,7 @@ export default function OverviewCard({ note }: Props) {
             </span>
           )}
         <span class="text-xs text-gray-600 smallcase">
-          {new Date(note.date).toLocaleString()}
+          {note.date}
         </span>
       </li>
     </a>

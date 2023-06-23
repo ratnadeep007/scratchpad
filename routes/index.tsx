@@ -12,6 +12,16 @@ export const handler: Handlers<Props> = {
   async GET(_req, ctx) {
     const allNotes = await getAllNotes();
 
+    // sort allNotes by date which is a string
+    allNotes.sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+
+    // format date string into dd/mm/yyyy format
+    allNotes.forEach((note) => {
+      note.date = new Date(note.date).toDateString();
+    });
+
     return ctx.render({
       allNotes: [...allNotes],
     });
