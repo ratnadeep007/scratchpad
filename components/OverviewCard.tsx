@@ -5,6 +5,13 @@ interface Props {
 }
 
 export default function OverviewCard({ note }: Props) {
+  // function to remove markdown specific charactes from string
+  const removeMarkdown = (str: string) => {
+    // Remove headings
+    str = str.replace(/#+\s/g, "\n");
+    return str;
+  };
+
   return (
     <a href={`${note.id}`}>
       <li class="flex flex-col justify-center items-start border-l-4 px-2 rounded-sm border-blue-300 hover:border-blue-600 cursor-pointer">
@@ -14,7 +21,7 @@ export default function OverviewCard({ note }: Props) {
         {note.type != "video"
           ? (
             <span class="text-base text-gray-900 capitalize truncate line-clmap-1 w-[300px] md:w-[500px]">
-              {note.message}
+              {removeMarkdown(note.message)}
             </span>
           )
           : (
