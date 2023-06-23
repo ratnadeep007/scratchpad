@@ -21,7 +21,11 @@ export const handler: Handlers<Props> = {
 const markdown_body = `.markdown-body a {
   color: blue !important;
   text-decoration: underline !important;
-}`;
+}
+.markdown-body ul {
+  list-style: disc;
+}
+`;
 
 export default function Details(props: PageProps<Props>) {
   return (
