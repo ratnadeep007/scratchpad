@@ -5,12 +5,15 @@ import { Note } from "../models/note.ts";
 import { CSS, render } from "markdown";
 
 type Props = {
-  note: Note;
+  note: Note | null;
 };
 
 export const handler: Handlers<Props> = {
   async GET(_req, ctx) {
     const note = await getNote(ctx.params.id);
+    if (!note) {
+      return new Response(null, { status: 404 });
+    }
 
     return ctx.render({
       note: note,
@@ -43,16 +46,16 @@ export default function Details(props: PageProps<Props>) {
         <div class="flex flex-col h-full items-center justify-start">
           <div class="block w-full p-6 bg-white rounded-lg hover:bg-gray-100">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-              {props.data.note.title}
+              {props?.data?.note?.title}
             </h5>
             <div class="rounded-lg text-center mb-2 bg-blue-300 p-1 text-xs font-semibold">
-              {props.data.note.type}
+              {props?.data?.note?.type}
             </div>
-            {props.data.note.type != "video"
+            {props?.data?.note?.type != "video"
               ? (
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: render(props.data.note.message),
+                    __html: render(props.data?.note?.message ?? ""),
                   }}
                   data-color-mode="light"
                   data-light-theme="light"
@@ -63,15 +66,15 @@ export default function Details(props: PageProps<Props>) {
               )
               : (
                 <a
-                  href={props.data.note.message}
+                  href={props?.data?.note?.message}
                   target="_blank"
                   class="text-base cursor-pointer text-blue-900 underline lowercase truncate line-clmap-1 w-[300px] md:w-[500px]"
                 >
-                  {props.data.note.message}
+                  {props?.data?.note?.message}
                 </a>
               )}
             <div class="text-xs text-gray-600 italic mt-2">
-              {new Date(props.data.note.date).toDateString()}
+              {new Date(props?.data?.note?.date ?? "").toDateString()}
             </div>
             {/* <a href="/">&larr;</a> */}
           </div>

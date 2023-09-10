@@ -10,10 +10,6 @@ export const handler: Handlers = {
     return await ctx.render();
   },
   async POST(req, _ctx) {
-    // get all notes and get length of it
-    const allNotes = await getAllNotes();
-    const count = allNotes.length;
-
     const form = await req.formData();
     const data = {
       message: form.get("message")?.toString(),

@@ -1,8 +1,8 @@
 {
   "lock": false,
   "tasks": {
-    "start": "deno run --reload -A --watch=static/,routes/ dev.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update ."
+    "start": "deno run --unstable --reload -A --watch=static/,routes/ dev.ts",
+    "update": "deno run --unstable -A -r https://fresh.deno.dev/update ."
   },
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.2.0/",
